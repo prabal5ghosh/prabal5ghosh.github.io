@@ -2,68 +2,3152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Prabal Ghosh</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Prabal Ghosh | AI, Medical Imaging & Machine Learning</title>
+
+  <meta
+    name="description"
+    content="Prabal Ghosh — Data Scientist and AI researcher working on medical imaging, multimodal machine learning, explainable AI, longitudinal disease modelling, and computational healthcare."
+  >
+
+  <meta
+    name="keywords"
+    content="Prabal Ghosh, Artificial Intelligence, Medical Imaging, Machine Learning, Data Science, FSHD, INRIA, Deep Learning, Explainable AI, Neural ODE, Biomedical AI"
+  >
+
+  <meta name="author" content="Prabal Ghosh">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prabal Ghosh | AI & Medical Imaging">
+  <meta
+    property="og:description"
+    content="Research portfolio of Prabal Ghosh — AI, Medical Imaging, Machine Learning and Computational Healthcare."
+  >
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prabal5ghosh.github.io/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
   <style>
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --bg: #f8fafc;
+      --bg-secondary: #ffffff;
+
+      --text: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --secondary: #7c3aed;
+      --cyan: #0891b2;
+
+      --border: #e2e8f0;
+
+      --card-bg: rgba(255, 255, 255, 0.85);
+
+      --nav-bg: rgba(248, 250, 252, 0.85);
+
+      --shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
+
+      --radius: 18px;
+
+      --max-width: 1180px;
+    }
+
+
+    body.dark {
+      --bg: #020617;
+      --bg-secondary: #0f172a;
+
+      --text: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+
+      --primary: #60a5fa;
+      --primary-light: #93c5fd;
+      --secondary: #a78bfa;
+      --cyan: #22d3ee;
+
+      --border: #1e293b;
+
+      --card-bg: rgba(15, 23, 42, 0.88);
+
+      --nav-bg: rgba(2, 6, 23, 0.88);
+
+      --shadow:
+        0 15px 40px rgba(0, 0, 0, 0.30);
+    }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+
     body {
-      max-width: 900px;
-      margin: auto;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      padding: 20px;
+      font-family: "Inter", sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 15% 5%,
+          rgba(59, 130, 246, 0.10),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 25%,
+          rgba(124, 58, 237, 0.08),
+          transparent 30%
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      line-height: 1.7;
+
+      transition:
+        background 0.3s ease,
+        color 0.3s ease;
     }
-    nav a {
-      margin-right: 15px;
+
+
+    a {
       text-decoration: none;
-      color: #0066cc;
+      color: inherit;
     }
-    h1 { margin-bottom: 0; }
+
+
+    img {
+      max-width: 100%;
+    }
+
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: auto;
+    }
+
+
+    /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+
+      background: var(--nav-bg);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+
+    .navbar {
+      min-height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 24px;
+    }
+
+
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1.35rem;
+      font-weight: 700;
+
+      letter-spacing: -0.04em;
+    }
+
+
+    .logo span {
+      color: var(--primary);
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+
+      list-style: none;
+    }
+
+
+    .nav-links a {
+      font-size: 0.92rem;
+      font-weight: 600;
+
+      color: var(--text-secondary);
+
+      transition: 0.2s ease;
+    }
+
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+
+    .theme-toggle {
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 50%;
+
+      background: var(--bg-secondary);
+
+      color: var(--text);
+
+      cursor: pointer;
+
+      display: grid;
+      place-items: center;
+
+      transition: 0.2s ease;
+    }
+
+
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 9px;
+
+      padding: 12px 20px;
+
+      border-radius: 10px;
+
+      font-weight: 600;
+
+      transition: all 0.25s ease;
+
+      border: 1px solid transparent;
+    }
+
+
+    .btn-primary {
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.22);
+    }
+
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.30);
+    }
+
+
+    .btn-outline {
+      border-color: var(--border);
+
+      background: var(--bg-secondary);
+
+      color: var(--text);
+    }
+
+
+    .btn-outline:hover {
+      transform: translateY(-3px);
+
+      border-color: var(--primary);
+
+      color: var(--primary);
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: calc(100vh - 72px);
+
+      display: flex;
+      align-items: center;
+
+      padding: 90px 0;
+    }
+
+
+    .hero-grid {
+      display: grid;
+
+      grid-template-columns: 1.35fr 0.65fr;
+
+      align-items: center;
+
+      gap: 80px;
+    }
+
+
+    .eyebrow {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      border: 1px solid rgba(37, 99, 235, 0.18);
+
+      background: rgba(37, 99, 235, 0.06);
+
+      color: var(--primary);
+
+      padding: 7px 13px;
+
+      border-radius: 999px;
+
+      font-size: 0.86rem;
+
+      font-weight: 700;
+
+      margin-bottom: 20px;
+    }
+
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: #22c55e;
+
+      box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.15);
+    }
+
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(3rem, 7vw, 5.6rem);
+
+      line-height: 1;
+
+      letter-spacing: -0.065em;
+
+      margin-bottom: 22px;
+    }
+
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          90deg,
+          #2563eb,
+          #7c3aed,
+          #0891b2
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+    }
+
+
+    .hero-description {
+      max-width: 730px;
+
+      color: var(--text-secondary);
+
+      font-size: 1.12rem;
+
+      margin-bottom: 30px;
+    }
+
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 9px;
+
+      margin-bottom: 34px;
+    }
+
+
+    .hero-tag {
+      padding: 7px 12px;
+
+      border-radius: 7px;
+
+      background: var(--bg-secondary);
+
+      border: 1px solid var(--border);
+
+      color: var(--text-secondary);
+
+      font-size: 0.84rem;
+
+      font-weight: 600;
+    }
+
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+
+    /* =========================================================
+       HERO VISUAL
+    ========================================================= */
+
+    .hero-visual {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .research-orbit {
+      width: 340px;
+      height: 340px;
+
+      position: relative;
+
+      display: grid;
+      place-items: center;
+    }
+
+
+    .profile-circle {
+      width: 155px;
+      height: 155px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 3.5rem;
+      font-weight: 700;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      box-shadow:
+        0 25px 70px rgba(37, 99, 235, 0.30);
+
+      position: relative;
+
+      z-index: 10;
+    }
+
+
+    .orbit {
+      position: absolute;
+
+      border:
+        1px dashed
+        rgba(59, 130, 246, 0.33);
+
+      border-radius: 50%;
+    }
+
+
+    .orbit-1 {
+      width: 255px;
+      height: 255px;
+    }
+
+
+    .orbit-2 {
+      width: 330px;
+      height: 330px;
+    }
+
+
+    .orbit-icon {
+      position: absolute;
+
+      width: 54px;
+      height: 54px;
+
+      border-radius: 15px;
+
+      background: var(--bg-secondary);
+
+      border: 1px solid var(--border);
+
+      display: grid;
+      place-items: center;
+
+      font-size: 1.35rem;
+
+      box-shadow: var(--shadow);
+    }
+
+
+    .icon-ai {
+      top: 4px;
+      left: 143px;
+    }
+
+
+    .icon-mri {
+      right: 8px;
+      top: 135px;
+    }
+
+
+    .icon-code {
+      bottom: 5px;
+      left: 143px;
+    }
+
+
+    .icon-research {
+      left: 8px;
+      top: 135px;
+    }
+
+
+    /* =========================================================
+       SECTIONS
+    ========================================================= */
+
+    section {
+      padding: 100px 0;
+    }
+
+
+    .section-label {
+      color: var(--primary);
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.14em;
+
+      font-size: 0.78rem;
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+    }
+
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(2rem, 4vw, 3rem);
+
+      line-height: 1.15;
+
+      letter-spacing: -0.04em;
+
+      margin-bottom: 15px;
+    }
+
+
+    .section-intro {
+      color: var(--text-secondary);
+
+      max-width: 720px;
+
+      margin-bottom: 50px;
+
+      font-size: 1rem;
+    }
+
+
+    /* =========================================================
+       ABOUT
+    ========================================================= */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns: 1.3fr 0.7fr;
+
+      gap: 40px;
+    }
+
+
+    .about-text {
+      font-size: 1.04rem;
+
+      color: var(--text-secondary);
+    }
+
+
+    .about-text p {
+      margin-bottom: 18px;
+    }
+
+
+    .about-highlight {
+      color: var(--text);
+
+      font-weight: 600;
+    }
+
+
+    .info-grid {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 14px;
+    }
+
+
+    .info-card {
+      padding: 20px;
+
+      background: var(--card-bg);
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+    }
+
+
+    .info-card i {
+      color: var(--primary);
+
+      font-size: 1.35rem;
+
+      margin-bottom: 12px;
+    }
+
+
+    .info-card h3 {
+      font-size: 0.97rem;
+
+      margin-bottom: 4px;
+    }
+
+
+    .info-card p {
+      color: var(--text-muted);
+
+      font-size: 0.83rem;
+    }
+
+
+    /* =========================================================
+       RESEARCH
+    ========================================================= */
+
+    .research-box {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.08),
+          rgba(124, 58, 237, 0.08)
+        );
+
+      border: 1px solid var(--border);
+
+      border-radius: 25px;
+
+      padding: 45px;
+    }
+
+
+    .research-flow {
+      margin-top: 35px;
+
+      display: grid;
+
+      grid-template-columns:
+        1fr auto 1fr auto 1fr;
+
+      align-items: center;
+
+      gap: 16px;
+    }
+
+
+    .flow-box {
+      min-height: 130px;
+
+      padding: 22px;
+
+      background: var(--bg-secondary);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      box-shadow: var(--shadow);
+    }
+
+
+    .flow-box i {
+      font-size: 1.5rem;
+
+      color: var(--primary);
+
+      margin-bottom: 10px;
+    }
+
+
+    .flow-box h3 {
+      font-size: 1rem;
+
+      margin-bottom: 6px;
+    }
+
+
+    .flow-box p {
+      font-size: 0.82rem;
+
+      color: var(--text-muted);
+    }
+
+
+    .arrow {
+      color: var(--primary);
+
+      font-size: 1.4rem;
+    }
+
+
+    /* =========================================================
+       PROJECTS
+    ========================================================= */
+
+    .project-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 24px;
+    }
+
+
+    .project-card {
+      position: relative;
+
+      padding: 30px;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--card-bg);
+
+      box-shadow: var(--shadow);
+
+      overflow: hidden;
+
+      transition: all 0.3s ease;
+    }
+
+
+    .project-card::before {
+      content: "";
+
+      width: 120px;
+      height: 120px;
+
+      position: absolute;
+
+      right: -50px;
+      top: -50px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.20),
+          rgba(124, 58, 237, 0.12)
+        );
+    }
+
+
+    .project-card:hover {
+      transform: translateY(-7px);
+
+      border-color:
+        rgba(37, 99, 235, 0.4);
+    }
+
+
+    .project-icon {
+      width: 52px;
+      height: 52px;
+
+      border-radius: 13px;
+
+      display: grid;
+      place-items: center;
+
+      background:
+        rgba(37, 99, 235, 0.10);
+
+      color: var(--primary);
+
+      font-size: 1.4rem;
+
+      margin-bottom: 20px;
+    }
+
+
+    .project-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1.35rem;
+
+      margin-bottom: 6px;
+    }
+
+
+    .project-org {
+      color: var(--primary);
+
+      font-weight: 700;
+
+      font-size: 0.88rem;
+
+      margin-bottom: 13px;
+    }
+
+
+    .project-card p {
+      color: var(--text-secondary);
+
+      font-size: 0.93rem;
+
+      margin-bottom: 18px;
+    }
+
+
+    .tech-tags {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 7px;
+
+      margin-bottom: 22px;
+    }
+
+
+    .tech-tag {
+      padding: 5px 9px;
+
+      border-radius: 6px;
+
+      background: rgba(100, 116, 139, 0.09);
+
+      color: var(--text-secondary);
+
+      font-size: 0.75rem;
+
+      font-weight: 600;
+    }
+
+
+    .project-link {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      color: var(--primary);
+
+      font-size: 0.9rem;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================================================
+       PUBLICATION
+    ========================================================= */
+
+    .publication-card {
+      display: flex;
+
+      gap: 25px;
+
+      padding: 30px;
+
+      border-radius: var(--radius);
+
+      border: 1px solid var(--border);
+
+      background: var(--card-bg);
+
+      box-shadow: var(--shadow);
+    }
+
+
+    .publication-icon {
+      min-width: 62px;
+      height: 62px;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #2563eb,
+          #7c3aed
+        );
+
+      color: white;
+
+      display: grid;
+      place-items: center;
+
+      font-size: 1.5rem;
+    }
+
+
+    .publication-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1.25rem;
+
+      margin-bottom: 6px;
+    }
+
+
+    .publication-meta {
+      color: var(--primary);
+
+      font-weight: 600;
+
+      margin-bottom: 10px;
+
+      font-size: 0.9rem;
+    }
+
+
+    .publication-card p {
+      color: var(--text-secondary);
+
+      margin-bottom: 13px;
+    }
+
+
+    /* =========================================================
+       EXPERIENCE
+    ========================================================= */
+
+    .timeline {
+      position: relative;
+
+      max-width: 900px;
+    }
+
+
+    .timeline::before {
+      content: "";
+
+      position: absolute;
+
+      left: 20px;
+      top: 5px;
+      bottom: 5px;
+
+      width: 2px;
+
+      background: var(--border);
+    }
+
+
+    .timeline-item {
+      position: relative;
+
+      padding-left: 65px;
+
+      margin-bottom: 45px;
+    }
+
+
+    .timeline-dot {
+      position: absolute;
+
+      left: 11px;
+      top: 7px;
+
+      width: 20px;
+      height: 20px;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+
+      border: 5px solid var(--bg);
+
+      box-shadow:
+        0 0 0 2px var(--primary);
+    }
+
+
+    .timeline-date {
+      color: var(--primary);
+
+      font-weight: 700;
+
+      font-size: 0.86rem;
+
+      margin-bottom: 4px;
+    }
+
+
+    .timeline-item h3 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1.25rem;
+
+      margin-bottom: 4px;
+    }
+
+
+    .timeline-org {
+      font-weight: 600;
+
+      color: var(--text-secondary);
+
+      margin-bottom: 10px;
+    }
+
+
+    .timeline-item p {
+      color: var(--text-secondary);
+
+      font-size: 0.93rem;
+
+      max-width: 720px;
+    }
+
+
+    /* =========================================================
+       EDUCATION
+    ========================================================= */
+
+    .education-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 22px;
+    }
+
+
+    .education-card {
+      padding: 27px;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--card-bg);
+
+      box-shadow: var(--shadow);
+
+      transition: 0.25s ease;
+    }
+
+
+    .education-card:hover {
+      transform: translateY(-5px);
+    }
+
+
+    .education-country {
+      font-size: 1.55rem;
+
+      margin-bottom: 15px;
+    }
+
+
+    .education-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1.13rem;
+
+      margin-bottom: 7px;
+    }
+
+
+    .degree {
+      color: var(--text-secondary);
+
+      font-size: 0.9rem;
+
+      margin-bottom: 13px;
+    }
+
+
+    .grade {
+      font-weight: 700;
+
+      color: var(--primary);
+
+      margin-bottom: 5px;
+    }
+
+
+    .education-year {
+      color: var(--text-muted);
+
+      font-size: 0.84rem;
+    }
+
+
+    /* =========================================================
+       AWARDS
+    ========================================================= */
+
+    .awards-grid {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 20px;
+    }
+
+
+    .award-card {
+      display: flex;
+
+      align-items: flex-start;
+
+      gap: 18px;
+
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--card-bg);
+    }
+
+
+    .award-icon {
+      font-size: 2rem;
+    }
+
+
+    .award-card h3 {
+      margin-bottom: 5px;
+    }
+
+
+    .award-card p {
+      color: var(--text-secondary);
+
+      font-size: 0.9rem;
+    }
+
+
+    /* =========================================================
+       SKILLS
+    ========================================================= */
+
+    .skills-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 20px;
+    }
+
+
+    .skill-card {
+      padding: 25px;
+
+      border: 1px solid var(--border);
+
+      border-radius: var(--radius);
+
+      background: var(--card-bg);
+    }
+
+
+    .skill-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: 1rem;
+
+      color: var(--primary);
+
+      margin-bottom: 15px;
+    }
+
+
+    .skill-list {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+    }
+
+
+    .skill {
+      padding: 7px 10px;
+
+      border-radius: 7px;
+
+      border: 1px solid var(--border);
+
+      background: var(--bg);
+
+      color: var(--text-secondary);
+
+      font-size: 0.8rem;
+
+      font-weight: 600;
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact-card {
+      padding: 55px;
+
+      text-align: center;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.10),
+          rgba(124, 58, 237, 0.12)
+        );
+
+      border: 1px solid var(--border);
+    }
+
+
+    .contact-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+
+      font-size: clamp(2rem, 4vw, 3rem);
+
+      margin-bottom: 14px;
+    }
+
+
+    .contact-card p {
+      max-width: 600px;
+
+      margin:
+        0 auto 28px;
+
+      color: var(--text-secondary);
+    }
+
+
+    .social-links {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+
+    .social-link {
+      width: 46px;
+      height: 46px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: var(--bg-secondary);
+
+      border: 1px solid var(--border);
+
+      color: var(--text);
+
+      font-size: 1.1rem;
+
+      transition: 0.2s ease;
+    }
+
+
+    .social-link:hover {
+      transform: translateY(-4px);
+
+      color: var(--primary);
+
+      border-color: var(--primary);
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+
+      padding: 30px 0;
+
+      text-align: center;
+
+      color: var(--text-muted);
+
+      font-size: 0.85rem;
+    }
+
+
+    /* =========================================================
+       SCROLL ANIMATION
+    ========================================================= */
+
+    .reveal {
+      opacity: 0;
+
+      transform: translateY(25px);
+
+      transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+    }
+
+
+    .reveal.visible {
+      opacity: 1;
+
+      transform: translateY(0);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 960px) {
+
+      .nav-links {
+        display: none;
+      }
+
+
+      .hero {
+        min-height: auto;
+      }
+
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+      }
+
+
+      .hero-visual {
+        order: -1;
+      }
+
+
+      .research-orbit {
+        width: 290px;
+        height: 290px;
+      }
+
+
+      .orbit-1 {
+        width: 220px;
+        height: 220px;
+      }
+
+
+      .orbit-2 {
+        width: 285px;
+        height: 285px;
+      }
+
+
+      .icon-ai {
+        left: 118px;
+      }
+
+
+      .icon-code {
+        left: 118px;
+      }
+
+
+      .icon-mri {
+        top: 117px;
+      }
+
+
+      .icon-research {
+        top: 117px;
+      }
+
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .research-flow {
+        grid-template-columns: 1fr;
+      }
+
+
+      .arrow {
+        transform: rotate(90deg);
+
+        text-align: center;
+      }
+
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 650px) {
+
+      section {
+        padding: 75px 0;
+      }
+
+
+      .hero {
+        padding: 60px 0;
+      }
+
+
+      .hero h1 {
+        font-size: 3.3rem;
+      }
+
+
+      .hero-visual {
+        display: none;
+      }
+
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .awards-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+
+      .publication-card {
+        flex-direction: column;
+      }
+
+
+      .publication-icon {
+        width: 62px;
+      }
+
+
+      .research-box {
+        padding: 25px;
+      }
+
+
+      .contact-card {
+        padding: 35px 22px;
+      }
+
+
+      .nav-cv {
+        display: none;
+      }
+
+    }
+
   </style>
 </head>
+
+
 <body>
 
-<h1>Prabal Ghosh</h1>
-<p>MSc Data Science & AI | Medical Imaging | Machine Learning</p>
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#research">Research</a>
-  <a href="#projects">Projects</a>
-  <a href="CV.pdf">CV</a>
-</nav>
+<header>
 
-<hr>
+  <div class="container navbar">
 
-<h2 id="about">About</h2>
-<p>
-I am a Data Science and AI graduate with research experience at INRIA Sophia Antipolis,
-working on MRI analysis, medical imaging, and explainable deep learning.
-</p>
-
-<h2 id="research">Research</h2>
-<ul>
-  <li><strong>INRIA (2025):</strong> MRI Analysis for Disease Progression Assessment in FSHD</li>
-  <li><strong>INRIA (2024):</strong> Explainable AI for CNNs</li>
-</ul>
-
-<h2 id="projects">Projects</h2>
-<ul>
-  <li>
-    <a href="https://github.com/prabal5ghosh/concept_conditional_relevance_explanatory_graph_for_CNN_Internship_Inria">
-      Concept Conditional Relevance for CNN
+    <a class="logo" href="#">
+      Prabal<span>.</span>
     </a>
-  </li>
-  <li>
-    <a href="https://github.com/prabal5ghosh/Machine-Learning-Project-on-Climate-Change-and-Building-Energy-Efficiency">
-      ML for Climate Change
-    </a>
-  </li>
-</ul>
 
-<hr>
-<p>
-<a href="https://github.com/prabal5ghosh">GitHub</a> |
-<a href="https://www.linkedin.com/in/prabal-ghosh-25a196158/">LinkedIn</a>
-</p>
+
+    <ul class="nav-links">
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#research">Research</a>
+      </li>
+
+      <li>
+        <a href="#projects">Projects</a>
+      </li>
+
+      <li>
+        <a href="#experience">Experience</a>
+      </li>
+
+      <li>
+        <a href="#education">Education</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+
+    </ul>
+
+
+    <div class="nav-actions">
+
+      <a
+        href="cv.pdf"
+        target="_blank"
+        class="btn btn-outline nav-cv"
+      >
+        <i class="fa-solid fa-file-lines"></i>
+        CV
+      </a>
+
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Toggle dark mode"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<main>
+
+<section class="hero">
+
+  <div class="container hero-grid">
+
+
+    <div>
+
+      <div class="eyebrow">
+        <span class="pulse-dot"></span>
+        AI · Medical Imaging · Computational Healthcare
+      </div>
+
+
+      <h1>
+        Hi, I'm
+        <span class="gradient-text">
+          Prabal Ghosh
+        </span>
+      </h1>
+
+
+      <p class="hero-description">
+
+        Data Scientist and AI researcher working at the intersection
+        of
+
+        <strong>
+          artificial intelligence, medical imaging,
+          machine learning and computational healthcare.
+        </strong>
+
+        My research interests include multimodal biomedical data,
+        longitudinal disease modelling, explainable AI and
+        representation learning.
+
+      </p>
+
+
+      <div class="hero-tags">
+
+        <span class="hero-tag">
+          🩻 Medical Imaging
+        </span>
+
+        <span class="hero-tag">
+          🤖 Machine Learning
+        </span>
+
+        <span class="hero-tag">
+          🧠 Deep Learning
+        </span>
+
+        <span class="hero-tag">
+          🔎 Explainable AI
+        </span>
+
+        <span class="hero-tag">
+          📈 Longitudinal Modelling
+        </span>
+
+        <span class="hero-tag">
+          🧬 Biomedical AI
+        </span>
+
+      </div>
+
+
+      <div class="hero-buttons">
+
+        <a
+          href="#research"
+          class="btn btn-primary"
+        >
+          <i class="fa-solid fa-flask"></i>
+          Explore My Research
+        </a>
+
+
+        <a
+          href="cv.pdf"
+          target="_blank"
+          class="btn btn-outline"
+        >
+          <i class="fa-solid fa-file-pdf"></i>
+          View CV
+        </a>
+
+
+        <a
+          href="https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+        >
+          <i class="fa-solid fa-graduation-cap"></i>
+          Google Scholar
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="hero-visual">
+
+      <div class="research-orbit">
+
+        <div class="orbit orbit-1"></div>
+        <div class="orbit orbit-2"></div>
+
+
+        <div class="orbit-icon icon-ai">
+          🧠
+        </div>
+
+
+        <div class="orbit-icon icon-mri">
+          🩻
+        </div>
+
+
+        <div class="orbit-icon icon-code">
+          💻
+        </div>
+
+
+        <div class="orbit-icon icon-research">
+          🔬
+        </div>
+
+
+        <div class="profile-circle">
+          PG
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section id="about">
+
+  <div class="container">
+
+    <div class="section-label">
+      About
+    </div>
+
+    <h2 class="section-title">
+      Researching intelligent systems
+      for biomedical data
+    </h2>
+
+
+    <div class="about-grid">
+
+
+      <div class="about-text reveal">
+
+        <p>
+
+          I am a
+
+          <span class="about-highlight">
+            Data Scientist and Artificial Intelligence researcher
+          </span>
+
+          with experience spanning medical imaging, multimodal
+          machine learning, deep learning, explainable artificial
+          intelligence and computational healthcare.
+
+        </p>
+
+
+        <p>
+
+          My research experience at
+
+          <span class="about-highlight">
+            INRIA Sophia Antipolis
+          </span>
+
+          has included MRI analysis for
+
+          <strong>
+            Facioscapulohumeral Muscular Dystrophy (FSHD)
+          </strong>
+
+          as well as explainability and concept detection in
+          convolutional neural networks.
+
+        </p>
+
+
+        <p>
+
+          Before focusing on biomedical AI research, I worked at
+
+          <span class="about-highlight">
+            Freshworks
+          </span>
+
+          as a software engineer, gaining professional experience
+          in backend and full-stack software development using
+          Python, Django, Ruby and Ruby on Rails.
+
+        </p>
+
+
+        <p>
+
+          I completed my
+
+          <span class="about-highlight">
+            MSc in Data Science and Artificial Intelligence
+          </span>
+
+          at Université Côte d'Azur, France.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="info-grid reveal">
+
+
+        <div class="info-card">
+
+          <i class="fa-solid fa-location-dot"></i>
+
+          <h3>Based in</h3>
+
+          <p>France</p>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <i class="fa-solid fa-microscope"></i>
+
+          <h3>Research</h3>
+
+          <p>Biomedical AI</p>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <i class="fa-solid fa-brain"></i>
+
+          <h3>Focus</h3>
+
+          <p>Medical Imaging</p>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <i class="fa-solid fa-code"></i>
+
+          <h3>Core language</h3>
+
+          <p>Python</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CURRENT RESEARCH
+========================================================= -->
+
+<section id="research">
+
+  <div class="container">
+
+    <div class="section-label">
+      Research
+    </div>
+
+    <h2 class="section-title">
+      Current research direction
+    </h2>
+
+    <p class="section-intro">
+
+      My current interests focus on learning disease trajectories
+      from longitudinal multimodal biomedical data by combining
+      imaging biomarkers, clinical measurements and modern
+      representation-learning approaches.
+
+    </p>
+
+
+    <div class="research-box reveal">
+
+
+      <div class="research-flow">
+
+
+        <div class="flow-box">
+
+          <i class="fa-solid fa-database"></i>
+
+          <h3>Multimodal Data</h3>
+
+          <p>
+            MRI biomarkers, clinical variables
+            and functional measurements
+          </p>
+
+        </div>
+
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+
+        <div class="flow-box">
+
+          <i class="fa-solid fa-brain"></i>
+
+          <h3>Latent Representation</h3>
+
+          <p>
+            Representation learning,
+            VAEs and multimodal integration
+          </p>
+
+        </div>
+
+
+        <div class="arrow">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+
+
+        <div class="flow-box">
+
+          <i class="fa-solid fa-chart-line"></i>
+
+          <h3>Disease Progression</h3>
+
+          <p>
+            Longitudinal modelling,
+            Neural ODEs and prediction
+          </p>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PROJECTS
+========================================================= -->
+
+<section id="projects">
+
+  <div class="container">
+
+    <div class="section-label">
+      Selected Work
+    </div>
+
+    <h2 class="section-title">
+      Research & Projects
+    </h2>
+
+    <p class="section-intro">
+
+      Selected projects covering medical imaging,
+      explainable artificial intelligence,
+      computational healthcare and machine learning.
+
+    </p>
+
+
+    <div class="project-grid">
+
+
+      <!-- FSHD -->
+
+      <article class="project-card reveal">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-x-ray"></i>
+        </div>
+
+
+        <div class="project-org">
+          INRIA Epione · Medical Imaging
+        </div>
+
+
+        <h3>
+          MRI Analysis for Disease Progression
+          Assessment in FSHD
+        </h3>
+
+
+        <p>
+
+          Research on multimodal MRI and clinical biomarkers
+          for studying disease progression in
+          Facioscapulohumeral Muscular Dystrophy.
+
+        </p>
+
+
+        <div class="tech-tags">
+
+          <span class="tech-tag">MRI</span>
+
+          <span class="tech-tag">FSHD</span>
+
+          <span class="tech-tag">PyTorch</span>
+
+          <span class="tech-tag">Longitudinal Modelling</span>
+
+          <span class="tech-tag">Multimodal AI</span>
+
+        </div>
+
+
+        <a
+          class="project-link"
+          href="https://github.com/prabal5ghosh/MRI-Analysis-for-Disease-Progression-Assessment-in-FSHD"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View project
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+
+      </article>
+
+
+
+      <!-- XAI -->
+
+      <article class="project-card reveal">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-brain"></i>
+        </div>
+
+
+        <div class="project-org">
+          INRIA · Explainable AI
+        </div>
+
+
+        <h3>
+          Concept Conditional Relevance
+          for Convolutional Neural Networks
+        </h3>
+
+
+        <p>
+
+          Investigation of concept-based explanations and
+          feature representations for understanding predictions
+          made by deep convolutional neural networks.
+
+        </p>
+
+
+        <div class="tech-tags">
+
+          <span class="tech-tag">XAI</span>
+
+          <span class="tech-tag">CNN</span>
+
+          <span class="tech-tag">PyTorch</span>
+
+          <span class="tech-tag">Computer Vision</span>
+
+        </div>
+
+
+        <a
+          class="project-link"
+          href="https://github.com/prabal5ghosh/concept_conditional_relevance_explanatory_graph_for_CNN_Internship_Inria"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View project
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+
+      </article>
+
+
+
+      <!-- Parkinson -->
+
+      <article class="project-card reveal">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-dna"></i>
+        </div>
+
+
+        <div class="project-org">
+          Computational Healthcare
+        </div>
+
+
+        <h3>
+          Computational Modeling of
+          Parkinson's Disease
+        </h3>
+
+
+        <p>
+
+          Mathematical and computational modelling of
+          dopaminergic pathways associated with Parkinson's
+          disease, later resulting in a peer-reviewed publication.
+
+        </p>
+
+
+        <div class="tech-tags">
+
+          <span class="tech-tag">Mathematical Modelling</span>
+
+          <span class="tech-tag">Computational Neuroscience</span>
+
+          <span class="tech-tag">Simulation</span>
+
+        </div>
+
+
+        <a
+          class="project-link"
+          href="https://pubs.aip.org/aip/acp/article/2917/1/050008/2919404/A-study-on-modeling-the-dopaminergic-pathways-of"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View publication
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+
+      </article>
+
+
+
+      <!-- Climate -->
+
+      <article class="project-card reveal">
+
+        <div class="project-icon">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+
+
+        <div class="project-org">
+          Machine Learning
+        </div>
+
+
+        <h3>
+          Climate Change &
+          Building Energy Efficiency
+        </h3>
+
+
+        <p>
+
+          Machine-learning project exploring climate-related
+          variables and building energy-efficiency prediction
+          using data-driven modelling.
+
+        </p>
+
+
+        <div class="tech-tags">
+
+          <span class="tech-tag">Machine Learning</span>
+
+          <span class="tech-tag">Python</span>
+
+          <span class="tech-tag">Data Analysis</span>
+
+          <span class="tech-tag">Scikit-learn</span>
+
+        </div>
+
+
+        <a
+          class="project-link"
+          href="https://github.com/prabal5ghosh/Machine-Learning-Project-on-Climate-Change-and-Building-Energy-Efficiency"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View project
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PUBLICATION
+========================================================= -->
+
+<section id="publications">
+
+  <div class="container">
+
+    <div class="section-label">
+      Publications
+    </div>
+
+    <h2 class="section-title">
+      Research Publication
+    </h2>
+
+
+    <article class="publication-card reveal">
+
+
+      <div class="publication-icon">
+        <i class="fa-solid fa-file-lines"></i>
+      </div>
+
+
+      <div>
+
+        <h3>
+          A Study on Modeling the Dopaminergic
+          Pathways of Parkinson's Disease
+        </h3>
+
+
+        <div class="publication-meta">
+          AIP Conference Proceedings · 2024
+        </div>
+
+
+        <p>
+
+          Mathematical and computational modelling of
+          dopaminergic pathways associated with
+          Parkinson's disease.
+
+        </p>
+
+
+        <a
+          class="project-link"
+          href="https://pubs.aip.org/aip/acp/article/2917/1/050008/2919404/A-study-on-modeling-the-dopaminergic-pathways-of"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          Read publication
+
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+        </a>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EXPERIENCE
+========================================================= -->
+
+<section id="experience">
+
+  <div class="container">
+
+    <div class="section-label">
+      Experience
+    </div>
+
+    <h2 class="section-title">
+      Research & Professional Experience
+    </h2>
+
+
+    <div class="timeline">
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-date">
+          Apr 2025 — Sep 2025
+        </div>
+
+        <h3>
+          Medical Image Analysis Intern
+        </h3>
+
+        <div class="timeline-org">
+          INRIA Epione · Sophia Antipolis, France
+        </div>
+
+        <p>
+
+          Worked on multimodal medical imaging and
+          MRI-based biomarkers for studying disease progression
+          in Facioscapulohumeral Muscular Dystrophy.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-date">
+          May 2024 — Aug 2024
+        </div>
+
+        <h3>
+          Explainable Artificial Intelligence Intern
+        </h3>
+
+        <div class="timeline-org">
+          INRIA · Sophia Antipolis, France
+        </div>
+
+        <p>
+
+          Worked on concept detection,
+          convolutional neural-network interpretability
+          and explainable artificial intelligence.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-date">
+          Jul 2022 — Mar 2023
+        </div>
+
+        <h3>
+          Graduate Engineer
+        </h3>
+
+        <div class="timeline-org">
+          Freshworks · Chennai, India
+        </div>
+
+        <p>
+
+          Software engineering work involving Python,
+          Django, Ruby, Ruby on Rails,
+          backend systems and web applications.
+
+        </p>
+
+      </div>
+
+
+
+      <div class="timeline-item reveal">
+
+        <div class="timeline-dot"></div>
+
+        <div class="timeline-date">
+          Apr 2022 — Jun 2022
+        </div>
+
+        <h3>
+          Software Development Intern
+        </h3>
+
+        <div class="timeline-org">
+          Freshworks · Chennai, India
+        </div>
+
+        <p>
+
+          Worked on Ruby on Rails full-stack
+          application development.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EDUCATION
+========================================================= -->
+
+<section id="education">
+
+  <div class="container">
+
+    <div class="section-label">
+      Education
+    </div>
+
+    <h2 class="section-title">
+      Academic Background
+    </h2>
+
+
+    <div class="education-grid">
+
+
+      <article class="education-card reveal">
+
+        <div class="education-country">
+          🇫🇷
+        </div>
+
+        <h3>
+          Université Côte d'Azur
+        </h3>
+
+        <div class="degree">
+          MSc Data Science &
+          Artificial Intelligence
+        </div>
+
+        <div class="grade">
+          M2: 14.97 / 20
+        </div>
+
+        <div class="education-year">
+          2023 — 2025
+        </div>
+
+      </article>
+
+
+
+      <article class="education-card reveal">
+
+        <div class="education-country">
+          🇮🇳
+        </div>
+
+        <h3>
+          Amrita Vishwa Vidyapeetham
+        </h3>
+
+        <div class="degree">
+          Master of Computer Applications
+        </div>
+
+        <div class="grade">
+          University Gold Medalist
+        </div>
+
+        <div class="education-year">
+          2020 — 2022
+        </div>
+
+      </article>
+
+
+
+      <article class="education-card reveal">
+
+        <div class="education-country">
+          🇮🇳
+        </div>
+
+        <h3>
+          RCC Institute of Technology
+        </h3>
+
+        <div class="degree">
+          B.Tech — Electronics &
+          Communication Engineering
+        </div>
+
+        <div class="grade">
+          78.60%
+        </div>
+
+        <div class="education-year">
+          2014 — 2018
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     AWARDS
+========================================================= -->
+
+<section id="awards">
+
+  <div class="container">
+
+    <div class="section-label">
+      Recognition
+    </div>
+
+    <h2 class="section-title">
+      Honors & Awards
+    </h2>
+
+
+    <div class="awards-grid">
+
+
+      <div class="award-card reveal">
+
+        <div class="award-icon">
+          🥇
+        </div>
+
+        <div>
+
+          <h3>
+            University Gold Medal
+          </h3>
+
+          <p>
+
+            Awarded by Amrita Vishwa Vidyapeetham
+            for achieving first rank during the
+            Master of Computer Applications program.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="award-card reveal">
+
+        <div class="award-icon">
+          🎓
+        </div>
+
+        <div>
+
+          <h3>
+            IDEX Excellence Scholarship
+          </h3>
+
+          <p>
+
+            Awarded by Université Côte d'Azur
+            during the MSc Data Science and
+            Artificial Intelligence program.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SKILLS
+========================================================= -->
+
+<section id="skills">
+
+  <div class="container">
+
+    <div class="section-label">
+      Technical Expertise
+    </div>
+
+    <h2 class="section-title">
+      Technologies & Research Skills
+    </h2>
+
+
+    <div class="skills-grid">
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          AI & Machine Learning
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">PyTorch</span>
+          <span class="skill">TensorFlow</span>
+          <span class="skill">Keras</span>
+          <span class="skill">Scikit-learn</span>
+          <span class="skill">Deep Learning</span>
+          <span class="skill">CNNs</span>
+          <span class="skill">Explainable AI</span>
+          <span class="skill">VAEs</span>
+          <span class="skill">Neural ODEs</span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          Scientific Computing
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">NumPy</span>
+          <span class="skill">Pandas</span>
+          <span class="skill">SciPy</span>
+          <span class="skill">Matplotlib</span>
+          <span class="skill">Seaborn</span>
+          <span class="skill">Statistics</span>
+          <span class="skill">Biomedical Data</span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          Programming
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">Python</span>
+          <span class="skill">R</span>
+          <span class="skill">MATLAB</span>
+          <span class="skill">Java</span>
+          <span class="skill">Ruby</span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          Web & Backend
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">Django</span>
+          <span class="skill">Django REST</span>
+          <span class="skill">Flask</span>
+          <span class="skill">Ruby on Rails</span>
+          <span class="skill">REST APIs</span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          Databases
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">PostgreSQL</span>
+          <span class="skill">MySQL</span>
+          <span class="skill">Oracle SQL</span>
+          <span class="skill">PL/SQL</span>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="skill-card reveal">
+
+        <h3>
+          Research Areas
+        </h3>
+
+        <div class="skill-list">
+
+          <span class="skill">Medical Imaging</span>
+          <span class="skill">Multimodal AI</span>
+          <span class="skill">MRI Biomarkers</span>
+          <span class="skill">Longitudinal Modelling</span>
+          <span class="skill">Generative Models</span>
+          <span class="skill">Computational Healthcare</span>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section id="contact">
+
+  <div class="container">
+
+    <div class="contact-card reveal">
+
+
+      <div class="section-label">
+        Contact
+      </div>
+
+
+      <h2>
+        Let's connect
+      </h2>
+
+
+      <p>
+
+        Interested in medical imaging, artificial intelligence,
+        machine learning or computational healthcare?
+        Feel free to connect with me.
+
+      </p>
+
+
+      <div class="hero-buttons"
+           style="justify-content:center; margin-bottom:30px;">
+
+        <a
+          href="mailto:prabal5ghosh@gmail.com"
+          class="btn btn-primary"
+        >
+          <i class="fa-solid fa-envelope"></i>
+          Email Me
+        </a>
+
+
+        <a
+          href="cv.pdf"
+          target="_blank"
+          class="btn btn-outline"
+        >
+          <i class="fa-solid fa-file-pdf"></i>
+          Download CV
+        </a>
+
+      </div>
+
+
+      <div class="social-links">
+
+
+        <a
+          class="social-link"
+          href="https://github.com/prabal5ghosh"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <i class="fa-brands fa-github"></i>
+        </a>
+
+
+        <a
+          class="social-link"
+          href="https://www.linkedin.com/in/prabal-ghosh-25a196158/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+
+
+        <a
+          class="social-link"
+          href="https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Google Scholar"
+        >
+          <i class="fa-solid fa-graduation-cap"></i>
+        </a>
+
+
+        <a
+          class="social-link"
+          href="mailto:prabal5ghosh@gmail.com"
+          aria-label="Email"
+        >
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+  <div class="container">
+
+    <p>
+
+      © <span id="year"></span>
+      Prabal Ghosh ·
+
+      <strong>
+        AI · Medical Imaging · Machine Learning
+      </strong>
+
+    </p>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  /* ---------------------------------------------------------
+     CURRENT YEAR
+  --------------------------------------------------------- */
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+
+  /* ---------------------------------------------------------
+     DARK / LIGHT MODE
+  --------------------------------------------------------- */
+
+  const themeToggle =
+    document.getElementById("themeToggle");
+
+  const themeIcon =
+    themeToggle.querySelector("i");
+
+
+  const savedTheme =
+    localStorage.getItem("theme");
+
+
+  if (savedTheme === "dark") {
+
+    document.body.classList.add("dark");
+
+    themeIcon.classList.remove("fa-moon");
+
+    themeIcon.classList.add("fa-sun");
+
+  }
+
+
+  themeToggle.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark");
+
+
+    const isDark =
+      document.body.classList.contains("dark");
+
+
+    if (isDark) {
+
+      themeIcon.classList.remove("fa-moon");
+
+      themeIcon.classList.add("fa-sun");
+
+      localStorage.setItem("theme", "dark");
+
+    }
+
+    else {
+
+      themeIcon.classList.remove("fa-sun");
+
+      themeIcon.classList.add("fa-moon");
+
+      localStorage.setItem("theme", "light");
+
+    }
+
+  });
+
+
+
+  /* ---------------------------------------------------------
+     SCROLL REVEAL
+  --------------------------------------------------------- */
+
+  const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+  const revealObserver =
+    new IntersectionObserver(
+
+      entries => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+            revealObserver.unobserve(entry.target);
+
+          }
+
+        });
+
+      },
+
+      {
+        threshold: 0.12
+      }
+
+    );
+
+
+  revealElements.forEach(element => {
+
+    revealObserver.observe(element);
+
+  });
+
+
+</script>
+
+
+
+<!-- =========================================================
+     STRUCTURED DATA / SEO
+========================================================= -->
+
+<script type="application/ld+json">
+
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Prabal Ghosh",
+  "url": "https://prabal5ghosh.github.io/",
+  "sameAs": [
+    "https://github.com/prabal5ghosh",
+    "https://www.linkedin.com/in/prabal-ghosh-25a196158/",
+    "https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en"
+  ],
+  "alumniOf": [
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Université Côte d'Azur"
+    },
+    {
+      "@type": "CollegeOrUniversity",
+      "name": "Amrita Vishwa Vidyapeetham"
+    }
+  ],
+  "knowsAbout": [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Medical Imaging",
+    "Deep Learning",
+    "Explainable Artificial Intelligence",
+    "Multimodal Machine Learning",
+    "Longitudinal Disease Modelling",
+    "Computational Healthcare"
+  ]
+}
+
+</script>
+
 
 </body>
 </html>
