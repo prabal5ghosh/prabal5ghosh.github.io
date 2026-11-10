@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prabal Ghosh</title>
+  <meta name="description" content="Prabal Ghosh, doctoral researcher at Inria Epione and CHU Nice. Muscle MRI, longitudinal modelling and explainable AI for FSHD.">
+  <meta name="author" content="Prabal Ghosh">
+  <meta name="theme-color" content="#f7f8fa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#10151c" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Prabal Ghosh">
+  <meta property="og:description" content="Doctoral researcher at Inria Epione and CHU Nice. Muscle MRI, longitudinal modelling and explainable AI for FSHD.">
+  <meta property="og:url" content="https://prabal5ghosh.github.io/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/806350669_18485593537105262_8176347795077714470_n.jpg">
+  <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://prabal5ghosh.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d5fd1'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Arial,sans-serif' font-size='28' font-weight='700' fill='white'%3EPG%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Prabal Ghosh",
+    "url": "https://prabal5ghosh.github.io/",
+    "email": "mailto:prabal5ghosh@gmail.com",
+    "jobTitle": "Doctoral researcher",
+    "affiliation": [
+      {"@type": "Organization", "name": "Inria", "url": "https://team.inria.fr/epione/en/"},
+      {"@type": "Hospital", "name": "CHU Nice", "url": "https://www.chu-nice.fr/"}
+    ],
+    "alumniOf": [
+      {"@type": "CollegeOrUniversity", "name": "Université Côte d'Azur"},
+      {"@type": "CollegeOrUniversity", "name": "Amrita Vishwa Vidyapeetham"},
+      {"@type": "CollegeOrUniversity", "name": "RCC Institute of Information Technology"}
+    ],
+    "award": ["University Gold Medal, Amrita Vishwa Vidyapeetham", "IDEX Excellence Scholarship, Université Côte d'Azur"],
+    "sameAs": [
+      "https://github.com/prabal5ghosh",
+      "https://www.linkedin.com/in/prabal-ghosh-25a196158/",
+      "https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en"
+    ],
+    "knowsAbout": ["Medical imaging", "Muscle MRI", "Longitudinal disease modelling", "Neural ordinary differential equations", "Explainable AI", "Machine learning"]
+  }
+  </script>
+  <script>
+    // If a logo file cannot be loaded, show the institution's name instead of a broken image.
+    function logoFallback(img) {
+      var span = document.createElement('span');
+      span.className = 'logo-text';
+      span.textContent = img.alt;
+      img.replaceWith(span);
+    }
+  </script>
+  <style>
+    /* Colours: change these values to restyle the whole page. */
+    :root {
+      --paper: #f7f8fa;
+      --ink: #18202b;
+      --muted: #5c6775;
+      --line: #dfe3e9;
+      --azure: #1d5fd1;
+      --wash: #e6eefb;
+      --sun: #f0b429;
+      --sans: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #10151c;
+        --ink: #e8ecf1;
+        --muted: #98a3b1;
+        --line: #283241;
+        --azure: #7fb0ff;
+        --wash: #1a2740;
+        --sun: #f3c14f;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 400 18px/1.7 var(--serif);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a {
+      color: var(--azure);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+    a:hover { background: var(--wash); text-decoration-thickness: 2px; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--azure); outline-offset: 3px; border-radius: 2px; }
+    p { margin: 0 0 1em; }
+    ul, ol { margin: 0; padding: 0; list-style: none; }
+
+    /* Page frame: fixed sidebar on the left, content on the right. */
+    .frame {
+      max-width: 1130px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 68px;
+    }
+
+    /* Sidebar */
+    .side { position: sticky; top: 0; align-self: start; padding: 52px 0 32px; font-family: var(--sans); }
+    .side .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 35%; border-radius: 10px; }
+    .side .name { font: 700 26px/1.15 var(--sans); margin: 18px 0 6px; letter-spacing: -0.01em; }
+    .side .role { font-size: 15px; line-height: 1.45; color: var(--muted); margin: 0 0 16px; }
+    .side .role a { color: inherit; }
+    .side ul { font-size: 15.5px; line-height: 1.3; }
+    .side li { margin-bottom: 8px; }
+    .side .jump { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); columns: 2; column-gap: 16px; }
+    .side .jump a { color: var(--muted); text-decoration: none; }
+    .side .jump a:hover { color: var(--ink); background: none; text-decoration: underline; }
+
+    /* Main column */
+    main { padding: 52px 0 40px; max-width: 730px; }
+    .lede {
+      font: 500 clamp(30px, 4.2vw, 46px)/1.14 var(--sans);
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+      text-wrap: balance;
+    }
+    .hosts { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+    .kicker { font: 500 15px/1.5 var(--sans); color: var(--muted); margin: 0 0 10px; }
+    .lead { font: 500 21px/1.45 var(--sans); margin: 0 0 22px; }
+    .facts { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 0; margin: 28px 0 0; border-top: 1px solid var(--line); font-size: 16.5px; line-height: 1.55; }
+    .facts dt, .facts dd { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .facts dt { font: 700 15px/1.7 var(--sans); }
+    main > section { margin-top: 68px; }
+    main > section:first-of-type { margin-top: 0; }
+    h2 { font: 700 23px/1.2 var(--sans); letter-spacing: -0.01em; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+    h3 { font: 600 18.5px/1.4 var(--serif); margin: 0; }
+    .sub { font: 700 17px/1.3 var(--sans); margin: 30px 0 8px; }
+    .meta { font: 500 14.5px/1.5 var(--sans); color: var(--muted); margin: 2px 0 4px; }
+    .items > li { margin-bottom: 26px; }
+    .items > li:last-child { margin-bottom: 0; }
+    .items p { margin: 0; }
+    .items p + p { margin-top: 6px; }
+
+    /* An entry: text on the left, institution logo on the right. */
+    .entry { display: grid; grid-template-columns: minmax(0, 1fr) 124px; gap: 22px; align-items: start; }
+    .entry p { margin: 0; }
+    .entry p + p { margin-top: 6px; }
+    .entry-logos { display: flex; flex-direction: column; gap: 8px; }
+    /* Logo tiles stay white in dark mode because the logo files have white or transparent backgrounds. */
+    .logo {
+      display: flex; align-items: center; justify-content: center;
+      width: 124px; height: 66px; padding: 10px 12px; border-radius: 8px;
+      background: #fff; border: 1px solid var(--line); text-decoration: none;
+    }
+    a.logo:hover { background: #fff; border-color: var(--azure); }
+    .logo img { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+    .logo-text { font: 700 13px/1.25 var(--sans); color: #18202b; text-align: center; }
+
+    /* Experience is a real sequence, so it gets a timeline. */
+    .timeline { border-left: 2px solid var(--line); margin-left: 5px; }
+    .timeline > li { position: relative; padding: 0 0 30px 26px; }
+    .timeline > li:last-child { padding-bottom: 0; }
+    .timeline > li::before {
+      content: "";
+      position: absolute; left: -7px; top: 7px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--paper); border: 2px solid var(--muted);
+    }
+    .timeline > li.now::before { background: var(--sun); border-color: var(--sun); }
+
+    /* Grades */
+    .grades { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 2px 22px; margin: 8px 0 0; font: 500 15px/1.5 var(--sans); }
+    .grades dt { color: var(--muted); }
+    .grades dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .entry .grades + p { margin-top: 12px; }
+
+    details { margin-top: 26px; border-top: 1px solid var(--line); padding-top: 14px; }
+    summary { font: 700 16px/1.4 var(--sans); cursor: pointer; }
+    details > .items { margin-top: 16px; }
+
+    /* Research */
+    .model { margin: 26px 0 8px; }
+    .model-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .model-inputs > div {
+      position: relative; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px;
+      font: 500 15px/1.4 var(--sans);
+    }
+    .model-inputs > div::after, .model-latent::after {
+      content: ""; position: absolute; left: 50%; bottom: -19px; width: 2px; height: 18px; background: var(--azure);
+    }
+    .model small { display: block; font-weight: 500; font-size: 13.5px; color: var(--muted); margin-top: 3px; }
+    .model-latent {
+      position: relative;
+      display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center;
+      margin-top: 18px; padding: 16px; border-radius: 8px; background: var(--wash);
+      font: 700 15px/1.4 var(--sans); text-align: center;
+    }
+    .model-latent .link {
+      font: 500 13.5px var(--sans); color: var(--azure);
+      padding: 3px 10px; border: 1.5px solid var(--azure); border-radius: 99px; background: var(--paper);
+    }
+    .model-out {
+      margin-top: 18px; padding: 14px 16px; border: 1.5px solid var(--azure); border-radius: 8px;
+      font: 700 15px/1.4 var(--sans); text-align: center;
+    }
+    figure { margin-left: 0; margin-right: 0; }
+    figcaption { font: 500 14.5px/1.5 var(--sans); color: var(--muted); margin-top: 10px; }
+
+    /* Certificates */
+    .certs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; max-width: 400px; }
+    .certs a { display: block; background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 6px; text-decoration: none; }
+    .certs a:hover { background: #fff; border-color: var(--azure); }
+    .certs img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+    .certs span { display: block; font: 500 13.5px/1.4 var(--sans); color: #18202b; text-align: center; padding-top: 4px; }
+
+    /* Skills table */
+    .skills { width: 100%; border-collapse: collapse; font-size: 16.5px; line-height: 1.55; }
+    .skills th, .skills td { text-align: left; vertical-align: top; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .skills tr:last-child th, .skills tr:last-child td { border-bottom: 0; }
+    .skills th { font: 700 15px/1.6 var(--sans); width: 200px; padding-right: 20px; }
+
+    /* Photos */
+    .album { margin-top: 30px; }
+    h2 + .album { margin-top: 0; }
+    .album h3 { font: 700 17px/1.3 var(--sans); margin: 0 0 2px; }
+    .album .meta { margin-bottom: 12px; }
+    .photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .photos a { display: block; position: relative; border-radius: 6px; overflow: hidden; background: var(--line); aspect-ratio: 4 / 3; }
+    .photos a:hover { background: var(--line); }
+    .photos a:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    .photos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .photo-note { font: 500 14.5px/1.5 var(--sans); color: var(--muted); margin-top: 14px; }
+
+    dialog { border: 0; padding: 0; background: transparent; max-width: min(94vw, 960px); color: #fff; }
+    dialog::backdrop { background: rgba(8, 12, 18, .9); }
+    dialog img { max-height: 78vh; width: auto; margin: 0 auto; border-radius: 6px; }
+    dialog p { font: 500 15px/1.4 var(--sans); text-align: center; margin: 12px 0 0; }
+    .viewer-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
+    dialog button {
+      padding: 7px 16px;
+      font: 500 15px var(--sans); color: #fff; background: transparent;
+      border: 1px solid rgba(255, 255, 255, .5); border-radius: 6px; cursor: pointer;
+    }
+    dialog button:hover { background: rgba(255, 255, 255, .14); }
+
+    footer { font: 500 14px/1.5 var(--sans); color: var(--muted); border-top: 1px solid var(--line); margin-top: 68px; padding: 18px 0 0; }
+
+    /* Tablet and phone: sidebar becomes a header. */
+    @media (max-width: 900px) {
+      .frame { grid-template-columns: 1fr; gap: 0; padding: 0 22px; }
+      .side { position: static; padding: 30px 0 0; display: grid; grid-template-columns: 96px 1fr; column-gap: 18px; align-items: center; }
+      .side .portrait { aspect-ratio: 1; border-radius: 50%; grid-row: span 2; }
+      .side .name { margin: 0; font-size: 24px; align-self: end; }
+      .side .role { margin: 0; align-self: start; }
+      .side .contact { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 18px; }
+      .side .contact li { margin: 0; }
+      .side .jump { display: none; }
+      main { padding-top: 36px; max-width: none; }
+      main > section { margin-top: 54px; }
+      body { font-size: 17px; }
+    }
+    @media (max-width: 560px) {
+      .entry { grid-template-columns: 1fr; gap: 10px; }
+      .facts { grid-template-columns: 1fr; }
+      .facts dt { border-bottom: 0; padding-bottom: 0; }
+      .facts dd { padding-top: 2px; }
+      .entry-logos { flex-direction: row; order: -1; }
+      .logo { width: 104px; height: 54px; padding: 8px 10px; }
+      .photos { grid-template-columns: repeat(2, 1fr); }
+      .model-latent { grid-template-columns: 1fr; }
+      .model-latent .link { justify-self: center; }
+      .skills th, .skills td { display: block; width: auto; }
+      .skills th { padding-bottom: 0; border-bottom: 0; }
+      .skills td { padding-top: 2px; }
+    }
+  </style>
+</head>
+<body>
+<div class="frame">
+
+  <aside class="side">
+    <img class="portrait" src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/806350669_18485593537105262_8176347795077714470_n.jpg" alt="Portrait of Prabal Ghosh">
+    <p class="name">Prabal Ghosh</p>
+    <p class="role">Doctoral researcher at <a href="https://team.inria.fr/epione/en/">Inria Epione</a> and <a href="https://www.chu-nice.fr/">CHU Nice</a>, Sophia Antipolis, France</p>
+    <ul class="contact">
+      <li><a href="mailto:prabal5ghosh@gmail.com">Email</a></li>
+      <li><a href="CV.pdf">CV (PDF)</a></li>
+      <li><a href="https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en">Google Scholar</a></li>
+      <li><a href="https://github.com/prabal5ghosh">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/prabal-ghosh-25a196158/">LinkedIn</a></li>
+    </ul>
+    <ul class="jump" aria-label="Sections on this page">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section id="about">
+      <div class="hosts">
+        <a class="logo" href="https://team.inria.fr/epione/en/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-11.png" alt="Inria" onerror="logoFallback(this)"></a>
+        <a class="logo" href="https://www.chu-nice.fr/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-58.png" alt="CHU Nice" onerror="logoFallback(this)"></a>
+        <a class="logo" href="https://univ-cotedazur.eu/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/UCA-Logo-1niveau-CMJN.jpg" alt="Université Côte d'Azur" onerror="logoFallback(this)"></a>
+      </div>
+      <p class="kicker">Ongoing doctoral research: facioscapulohumeral muscular dystrophy (FSHD)</p>
+      <h1 class="lede">Understanding change over time.</h1>
+      <p class="lead">Exploring how artificial intelligence can help us understand disease progression.</p>
+      <p>I am a doctoral researcher in the Epione team at Inria, in collaboration with CHU Nice. I hold an MSc in Data Science and Artificial Intelligence from Université Côte d'Azur and a Master of Computer Applications from Amrita Vishwa Vidyapeetham, where I was awarded the University Gold Medal. Before my doctoral research I completed two research internships at Inria, in medical image analysis and in explainable AI, and worked as a software engineer at Freshworks.</p>
+      <!-- TODO: add your thesis title and supervisors to the list below, e.g.
+           <dt>Supervisors</dt><dd>… (Inria), … (CHU Nice)</dd> -->
+      <dl class="facts">
+        <dt>Position</dt><dd>Clinical Research Assistant, doctoral research</dd>
+        <dt>Institutions</dt><dd>Inria (Epione team) and CHU Nice</dd>
+        <dt>Location</dt><dd>Sophia Antipolis, France</dd>
+        <dt>Research areas</dt><dd>Medical imaging, multimodal learning, longitudinal disease modelling, explainable AI</dd>
+      </dl>
+    </section>
+
+    <section id="research">
+      <h2>Research</h2>
+      <p>FSHD is a muscular dystrophy that progresses slowly and affects individual muscles at different rates, which makes change between consecutive visits difficult to assess. My doctoral research addresses this by modelling several types of data collected longitudinally on the same patients.</p>
+
+      <h3 class="sub">Data</h3>
+      <p>The first source is whole-body muscle MRI, acquired with Dixon and STIR sequences, from which quantitative biomarkers are derived: muscle fat fraction, muscle fat infiltration and lean muscle volume. The second is the set of clinical and functional measures recorded at each visit. The two sources are complementary and evolve on different timescales.</p>
+      <!-- TODO: add cohort size / number of visits / follow-up length if you are allowed to share it. -->
+
+      <h3 class="sub">Method</h3>
+      <p>Each patient is represented by a latent disease state that evolves according to coupled latent ordinary differential equations. Each modality has its own dynamics, and explicit coupling terms relate changes observed on MRI to changes in clinical scores. Interpretability is a central requirement: the parameters of the model should be clinically meaningful and open to inspection.</p>
+
+      <figure class="model">
+        <div class="model-inputs">
+          <div>Clinical and functional measures<small>recorded at each visit</small></div>
+          <div>Muscle MRI biomarkers<small>fat fraction, fat infiltration, lean muscle volume</small></div>
+        </div>
+        <div class="model-latent">
+          <div>Clinical dynamics<small>latent ODE</small></div>
+          <span class="link">coupled</span>
+          <div>Imaging dynamics<small>latent ODE</small></div>
+        </div>
+        <div class="model-out">Patient-specific disease trajectory<small>predicted progression at future visits</small></div>
+        <figcaption>Schematic of the model: one latent ODE per modality, coupled so that progression can be interpreted across both.</figcaption>
+      </figure>
+      <!-- TODO: replace or follow this schematic with a real figure from your work:
+           <figure><img src="assets/your-figure.png" alt="…"><figcaption>…</figcaption></figure> -->
+
+      <h3 class="sub">Missing data</h3>
+      <p>Longitudinal clinical cohorts are rarely complete: visits are missed and not every measure is acquired at every visit. I am investigating mask-aware representation learning and generative imputation with variational autoencoders, so that the model distinguishes observed values from missing ones.</p>
+
+      <h3 class="sub">Previous research</h3>
+      <p>During my 2025 internship in the Epione team I worked on <a href="https://github.com/prabal5ghosh/MRI-Analysis-for-Disease-Progression-Assessment-in-FSHD">MRI analysis for disease progression assessment in FSHD</a>. In 2024, also at Inria, I studied <a href="https://github.com/prabal5ghosh/concept_conditional_relevance_explanatory_graph_for_CNN_Internship_Inria">concept detection in deep convolutional neural networks</a>, using concept conditional relevance to explain learned representations. Earlier, at Amrita Vishwa Vidyapeetham, I worked on a mathematical model of the dopaminergic pathways in Parkinson's disease, which led to a <a href="#publications">conference publication</a>.</p>
+    </section>
+
+    <!-- TODO: uncomment and fill in with real items only.
+    <section id="news">
+      <h2>News</h2>
+      <ul class="items">
+        <li><p class="meta">Month Year</p><p>Poster at …</p></li>
+        <li><p class="meta">June 2026</p><p>Started doctoral research at CHU Nice and Inria Epione.</p></li>
+      </ul>
+    </section>
+    -->
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li class="now">
+          <div class="entry">
+            <div>
+              <p class="meta">June 2026 – present</p>
+              <h3>Clinical Research Assistant, doctoral research</h3>
+              <p class="meta">CHU Nice and Inria Epione · Sophia Antipolis, France</p>
+              <p>Multimodal longitudinal modelling of FSHD progression from clinical assessments and MRI biomarkers, with interpretable neural latent ODEs.</p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.chu-nice.fr/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-58.png" alt="CHU Nice" loading="lazy" onerror="logoFallback(this)"></a>
+              <a class="logo" href="https://team.inria.fr/epione/en/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-11.png" alt="Inria" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <p class="meta">1 April 2025 – 30 September 2025</p>
+              <h3>Medical Image Analysis Intern</h3>
+              <p class="meta">Inria, Epione team · Sophia Antipolis, France</p>
+              <p>Multimodal muscle MRI analysis for disease progression assessment in FSHD: Dixon and STIR processing, stitching, segmentation and quantitative biomarkers.</p>
+              <p><a href="https://github.com/prabal5ghosh/MRI-Analysis-for-Disease-Progression-Assessment-in-FSHD">Project repository</a></p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.inria.fr/en/inria-centre-universite-cote-azur"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-11.png" alt="Inria" loading="lazy" onerror="logoFallback(this)"></a>
+              <a class="logo" href="https://www.chu-nice.fr/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-58.png" alt="CHU Nice" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <p class="meta">2 May 2024 – 30 August 2024</p>
+              <h3>Explainable AI Intern</h3>
+              <p class="meta">Inria · Sophia Antipolis, France</p>
+              <p>Concept detection in deep convolutional neural networks, using concept conditional relevance and relevance propagation.</p>
+              <p><a href="https://github.com/prabal5ghosh/concept_conditional_relevance_explanatory_graph_for_CNN_Internship_Inria">Project repository</a></p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.inria.fr/en/inria-centre-universite-cote-azur"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Screenshot%20from%202026-09-02%2014-27-11.png" alt="Inria" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <p class="meta">18 July 2022 – 24 March 2023</p>
+              <h3>Graduate Engineer</h3>
+              <p class="meta">Freshworks · Chennai, India</p>
+              <p>Backend and web application development in Python (Django) and Ruby on Rails.</p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.freshworks.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Freshworks-vector-logo.svg" alt="Freshworks" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <p class="meta">4 April 2022 – 30 June 2022</p>
+              <h3>Software Development Intern</h3>
+              <p class="meta">Freshworks · Chennai, India</p>
+              <p>Full-stack development with Ruby on Rails.</p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.freshworks.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Freshworks-vector-logo.svg" alt="Freshworks" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <ul class="items">
+        <li>
+          <div class="entry">
+            <div>
+              <h3>MSc, Data Science and Artificial Intelligence</h3>
+              <p class="meta"><a href="https://univ-cotedazur.eu/msc/msc-data-science-and-artificial-intelligence">Université Côte d'Azur</a> · France · 2023 – 2025</p>
+              <dl class="grades">
+                <dt>Master 2, 2024 – 2025</dt><dd>14.97 / 20</dd>
+                <dt>Master 1, 2023 – 2024</dt><dd>12.95 / 20</dd>
+              </dl>
+              <p>Recipient of the IDEX Excellence Scholarship. Both certificates can be verified online:</p>
+              <div class="certs">
+                <a href="https://www.smartcertificate.com/SmartCertificate/?1%7c5d5d86ba-23ce-4e72-971f-f92095ccd89f%7c1741deec-e11b-4d93-9755-ea44e9c95d1a"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/UCA_M1_Certificate.jpg" alt="Master 1 certificate, Data Science and Artificial Intelligence" loading="lazy"><span>M1 certificate</span></a>
+                <a href="https://www.smartcertificate.com/SmartCertificate/?1%7ca7f991e8-caed-43eb-a8dd-7ea902a5cadb%7cc728926f-781a-44bd-a637-47a1752136d8"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/UCA_M2_Certificate.jpg" alt="Master 2 certificate, Data Science and Artificial Intelligence" loading="lazy"><span>M2 certificate</span></a>
+              </div>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://univ-cotedazur.eu/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/UCA-Logo-1niveau-CMJN.jpg" alt="Université Côte d'Azur" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <h3>Master of Computer Applications</h3>
+              <p class="meta"><a href="https://www.amrita.edu/campus/amritapuri/">Amrita Vishwa Vidyapeetham</a> · Amritapuri, India · 2020 – 2022</p>
+              <dl class="grades">
+                <dt>Overall</dt><dd>9.5 / 10 (95%)</dd>
+                <dt>Rank</dt><dd>1st in the university, Gold Medal</dd>
+              </dl>
+            </div>
+            <div class="entry-logos">
+              <!-- TODO: this logo is loaded from a Google image cache and may stop working. Upload an Amrita logo to your Assets folder and change the src. -->
+              <a class="logo" href="https://www.amrita.edu/campus/amritapuri/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV-OmgMvcsf3sC5WBItq-AEoIpWPeZLlGKKb0wcvgjHC_RJHtNIwyMrJI&usqp=CAE&s" alt="Amrita Vishwa Vidyapeetham" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <h3>BTech, Electronics and Communication Engineering</h3>
+              <p class="meta"><a href="https://rcciit.org">RCC Institute of Information Technology</a> (MAKAUT) · Kolkata, India · 2014 – 2018</p>
+              <dl class="grades">
+                <dt>Overall</dt><dd>7.86 / 10 (78.60%)</dd>
+              </dl>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://rcciit.org"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Regional_Computer_Centre_Institute_Of_Information_Technology.png" alt="RCC Institute of Information Technology" loading="lazy" onerror="logoFallback(this)"></a>
+              <a class="logo" href="https://makautwb.ac.in/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/Maulana_Abul_Kalam_Azad_University_of_Technology_Logo.svg" alt="MAKAUT" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <details>
+        <summary>Earlier education</summary>
+        <ul class="items">
+          <li>
+            <h3>Higher Secondary Certificate, 2014</h3>
+            <p class="meta">Nayabasat Parbati Moyee Sikshaniketan · West Bengal Council of Higher Secondary Education</p>
+            <dl class="grades">
+              <dt>Overall</dt><dd>78.40%</dd>
+              <dt>Physics</dt><dd>90%</dd>
+              <dt>Chemistry</dt><dd>90%</dd>
+              <dt>Mathematics</dt><dd>86%</dd>
+            </dl>
+          </li>
+          <li>
+            <h3>Secondary education, 2012</h3>
+            <p class="meta">Nayabasat Parbati Moyee Sikshaniketan · West Bengal Board of Secondary Education</p>
+            <dl class="grades">
+              <dt>Overall</dt><dd>87.14%</dd>
+              <dt>Mathematics</dt><dd>97%</dd>
+              <dt>Geography</dt><dd>95%</dd>
+              <dt>Biology</dt><dd>94%</dd>
+            </dl>
+          </li>
+        </ul>
+      </details>
+    </section>
+
+    <section id="awards">
+      <h2>Honours and awards</h2>
+      <ul class="items">
+        <li>
+          <div class="entry">
+            <div>
+              <h3>University Gold Medal</h3>
+              <p class="meta">Amrita Vishwa Vidyapeetham · 2022</p>
+              <p>Awarded for first rank in the university in the Master of Computer Applications programme.</p>
+              <p><a href="https://drive.google.com/file/d/1e1LoCiBQS0pa1RY7Sqq9ExXxV91ZV-O2/view?usp=sharing">View the credential</a></p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://www.amrita.edu/campus/amritapuri/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV-OmgMvcsf3sC5WBItq-AEoIpWPeZLlGKKb0wcvgjHC_RJHtNIwyMrJI&usqp=CAE&s" alt="Amrita Vishwa Vidyapeetham" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="entry">
+            <div>
+              <h3>IDEX Excellence Scholarship</h3>
+              <p class="meta">Université Côte d'Azur · 2023 – 2024</p>
+              <p>Awarded during the MSc in Data Science and Artificial Intelligence in recognition of academic excellence.</p>
+              <p><a href="https://github.com/prabal5ghosh/prabal5ghosh/blob/main/Assets/2023-24_DSAI_M1_GHOSH%20Prabal_Attestation%20de%20bourse%20IDEX.pdf">View the attestation</a></p>
+            </div>
+            <div class="entry-logos">
+              <a class="logo" href="https://univ-cotedazur.eu/"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/UCA-Logo-1niveau-CMJN.jpg" alt="Université Côte d'Azur" loading="lazy" onerror="logoFallback(this)"></a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Publications</h2>
+      <ul class="items">
+        <li>
+          <!-- TODO: check the spelling and order of the author names against the paper. -->
+          <h3><a href="https://pubs.aip.org/aip/acp/article/2917/1/050008/2919404/A-study-on-modeling-the-dopaminergic-pathways-of">A Study on Modeling the Dopaminergic Pathways of Parkinson's Disease</a></h3>
+          <p><strong>Prabal Ghosh</strong>, Sreeja Sasidharan Rajeswari, Rohit P. S., Manjusha Nair</p>
+          <p class="meta">AIP Conference Proceedings 2917, 050008 (2023) · Recent Advances in Industry 4.0 Technologies · <a href="https://doi.org/10.1063/5.0175617">doi:10.1063/5.0175617</a></p>
+          <p>Mathematical and computational modelling of the dopaminergic pathways associated with Parkinson's disease.</p>
+        </li>
+      </ul>
+      <p style="margin-top: 22px">A current list is available on <a href="https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en">Google Scholar</a>.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <!-- TODO: for each project add one concrete detail: dataset, size, method you chose, result. -->
+      <ul class="items">
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/MRI-Analysis-for-Disease-Progression-Assessment-in-FSHD">MRI analysis for disease progression in FSHD</a></h3>
+          <p class="meta">Inria Epione · Python, PyTorch, SciPy, scikit-learn</p>
+          <p>Whole-body Dixon and STIR muscle MRI combined with clinical and functional biomarkers: fat fraction, fat infiltration, lean muscle volume, and longitudinal modelling of progression.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/concept_conditional_relevance_explanatory_graph_for_CNN_Internship_Inria">Concept-based explanations for CNNs</a></h3>
+          <p class="meta">Inria · Python, PyTorch</p>
+          <p>Concept conditional relevance and explanatory graphs for interpreting the predictions of convolutional neural networks.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/Multimodal-Representation-of-Whole-Slide-Images-and-Reports-implementation-using-pytorch">Whole-slide images and pathology reports</a></h3>
+          <p>PyTorch implementation of a multimodal representation model for pathology whole-slide images and their associated reports.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/Autonomous-Taxi-Agent-game-using-Q-learning-SARSA-and-Deep-Q-learning">Autonomous taxi agent with reinforcement learning</a></h3>
+          <p>Comparison of Q-learning, SARSA and deep Q-learning in a simulated taxi environment.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/Convolutional-Block-Attention-Module-for-face">Convolutional block attention for face images</a></h3>
+          <p>Convolutional block attention modules (CBAM) applied to face image analysis.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/Machine-Learning-Project-on-Climate-Change-and-Building-Energy-Efficiency">Climate and building energy efficiency</a></h3>
+          <p>Prediction of building energy efficiency from climate-related features using scikit-learn.</p>
+        </li>
+        <li>
+          <h3><a href="https://github.com/prabal5ghosh/breast-cancer-detection-using-Machine-learning-Machine-learning-final-lab-exam-project">Breast cancer classification with SVMs</a></h3>
+          <p>Course project on breast cancer classification with support vector machines.</p>
+        </li>
+      </ul>
+      <p style="margin-top: 22px">Further repositories are available on <a href="https://github.com/prabal5ghosh?tab=repositories&type=source">GitHub</a>.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <table class="skills">
+        <tbody>
+          <tr><th scope="row">Research areas</th><td>Medical imaging, multimodal learning, longitudinal disease modelling, explainable AI, generative models</td></tr>
+          <tr><th scope="row">Machine learning</th><td>PyTorch, TensorFlow, Keras, scikit-learn; CNNs, variational autoencoders, neural ODEs, reinforcement learning</td></tr>
+          <tr><th scope="row">Medical imaging</th><td>Dixon and STIR MRI processing, quantitative biomarkers, SimpleITK, NiBabel, 3D Slicer</td></tr>
+          <tr><th scope="row">Scientific computing</th><td>NumPy, Pandas, SciPy, Matplotlib, Seaborn; Jupyter, Linux, HPC clusters</td></tr>
+          <tr><th scope="row">Programming</th><td>Python, R, MATLAB, Java, Ruby</td></tr>
+          <tr><th scope="row">Backend and web</th><td>Django, Django REST Framework, Flask, Ruby on Rails, Git</td></tr>
+          <tr><th scope="row">Databases</th><td>PostgreSQL, MySQL, Oracle SQL and PL/SQL</td></tr>
+          <tr><th scope="row">Knowledge representation</th><td>RDF, RDFS, OWL, SPARQL, SHACL</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="photos">
+      <h2>Photos</h2>
+      <!-- TODO: the captions (data-caption) are generic. Replace them with the real event and month for each photo. -->
+      <div class="album">
+        <h3>Université Côte d'Azur</h3>
+        <p class="meta">France, 2023 to 2025</p>
+        <div class="photos">
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca3.jpg" data-caption="M2 defence, Université Côte d'Azur"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca3.jpg" alt="Prabal at his M2 defence" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca2.jpg" data-caption="MSc research defence"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca2.jpg" alt="MSc research defence" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/shopia-summit-2023.jpg" data-caption="Sophia Antipolis, 2023"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/shopia-summit-2023.jpg" alt="At an academic event in Sophia Antipolis" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca_prabal.jpg" data-caption="Université Côte d'Azur"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca_prabal.jpg" alt="Prabal at Université Côte d'Azur" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca4.jpg" data-caption="Université Côte d'Azur campus"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca4.jpg" alt="Université Côte d'Azur campus" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca5.jpg" data-caption="Université Côte d'Azur"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/uca5.jpg" alt="At Université Côte d'Azur" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+      <div class="album">
+        <h3>Amrita Vishwa Vidyapeetham</h3>
+        <p class="meta">India, 2020 to 2022</p>
+        <div class="photos">
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/prabal_amma_amrita.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/prabal_amma_amrita.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita11.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita11.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita1.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita1.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita8.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita8.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita9.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita9.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita7.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita7.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita5.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita5.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita6.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita6.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita3.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita3.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita12.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita12.jpg" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+      <div class="album">
+        <h3>RCC Institute of Technology</h3>
+        <p class="meta">India, 2014 to 2018</p>
+        <div class="photos">
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/prabal_ghosh_rcciit.jpg" data-caption="RCC Institute of Technology"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/prabal_ghosh_rcciit.jpg" alt="At RCC Institute of Technology" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/rcc1.jpg" data-caption="RCC Institute of Technology"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/rcc1.jpg" alt="At RCC Institute of Technology" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/rcc2.jpg" data-caption="RCC Institute of Technology"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/rcc2.jpg" alt="At RCC Institute of Technology" loading="lazy" decoding="async"></a>
+        </div>
+      </div>
+      <p class="photo-note">Select a photo to enlarge it. The arrow keys move between photos.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>For research enquiries and collaboration, please contact me by email: <a href="mailto:prabal5ghosh@gmail.com">prabal5ghosh@gmail.com</a>.</p>
+      <p>Profiles: <a href="https://www.linkedin.com/in/prabal-ghosh-25a196158/">LinkedIn</a>, <a href="https://scholar.google.com/citations?user=aDgirOYAAAAJ&hl=en">Google Scholar</a>, <a href="https://github.com/prabal5ghosh">GitHub</a>, <a href="https://www.instagram.com/prabalghosh5/">Instagram</a> and <a href="https://www.facebook.com/prabal.ghosh.129">Facebook</a>. My <a href="CV.pdf">CV</a> is available as a PDF.</p>
+    </section>
+
+    <footer>
+      <!-- TODO: update the date when you edit the page. -->
+      Last updated November 2026.
+    </footer>
+  </main>
+</div>
+
+<dialog id="viewer" aria-label="Photo viewer">
+  <img id="viewer-img" alt="">
+  <p id="viewer-caption"></p>
+  <div class="viewer-buttons">
+    <button type="button" id="viewer-prev">Previous</button>
+    <button type="button" id="viewer-close">Close</button>
+    <button type="button" id="viewer-next">Next</button>
+  </div>
+</dialog>
+
+<script>
+  // Open photos in a viewer instead of leaving the page. Without JavaScript the links still work.
+  (function () {
+    var viewer = document.getElementById('viewer');
+    var img = document.getElementById('viewer-img');
+    var caption = document.getElementById('viewer-caption');
+    var links = Array.prototype.slice.call(document.querySelectorAll('.photos a'));
+    var current = 0;
+    if (!viewer || typeof viewer.showModal !== 'function' || !links.length) return;
+    function show(index) {
+      current = (index + links.length) % links.length;
+      var link = links[current];
+      img.src = link.href;
+      img.alt = link.querySelector('img').alt;
+      caption.textContent = (link.dataset.caption || '') + ' (' + (current + 1) + ' of ' + links.length + ')';
+    }
+    links.forEach(function (link, index) {
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        show(index);
+        viewer.showModal();
+      });
+    });
+    document.getElementById('viewer-prev').addEventListener('click', function () { show(current - 1); });
+    document.getElementById('viewer-next').addEventListener('click', function () { show(current + 1); });
+    document.getElementById('viewer-close').addEventListener('click', function () { viewer.close(); });
+    viewer.addEventListener('click', function (event) { if (event.target === viewer) viewer.close(); });
+    document.addEventListener('keydown', function (event) {
+      if (!viewer.open) return;
+      if (event.key === 'ArrowLeft') show(current - 1);
+      if (event.key === 'ArrowRight') show(current + 1);
+    });
+  })();
+</script>
+</body>
+</html>
