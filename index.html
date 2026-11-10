@@ -112,13 +112,19 @@
     .nav ul a { color: var(--muted); text-decoration: none; }
     .nav a:hover { color: var(--ink); background: none; text-decoration: underline; }
 
-    /* Banner. To change the picture, replace the address inside url(...) below.
-       A wide photo (at least 1600 pixels across) works best. */
+    /* Banner picture. Save a wide landscape photo (for example the Promenade des Anglais,
+       at least 1600 pixels across) as banner.jpg in the same folder as this file.
+       Until that file exists, the mountain photo below it is shown instead. */
     .hero {
       color: #fff;
-      background:
-        linear-gradient(180deg, rgba(10, 20, 36, .62), rgba(10, 20, 36, .88)),
-        url("https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/806350669_18485593537105262_8176347795077714470_n.jpg") center 9% / cover no-repeat #14233a;
+      background-color: #14233a;
+      background-image:
+        linear-gradient(180deg, rgba(8, 22, 40, .52), rgba(8, 22, 40, .74)),
+        url("banner.jpg"),
+        url("https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/806350669_18485593537105262_8176347795077714470_n.jpg");
+      background-size: auto, cover, cover;
+      background-position: center, center 42%, center 9%;
+      background-repeat: no-repeat;
     }
     .hero .wrap { padding-top: 54px; padding-bottom: 44px; }
     .hosted { font: 500 15px/1.5 var(--sans); color: rgba(255, 255, 255, .82); margin: 0 0 10px; }
@@ -174,6 +180,7 @@
     .logo { overflow: hidden; }
     .logo img[alt^="Universit"] { max-width: none; max-height: none; width: 124%; }
     .hosts .logo:has(img[alt^="Universit"]) { width: 210px; }
+    .hosts .logo img[alt^="Universit"] { width: 106%; }
     .logo-text { font: 700 13px/1.25 var(--sans); color: #18202b; text-align: center; }
 
     /* Experience is a real sequence, so it gets a timeline. */
@@ -270,7 +277,7 @@
       .wrap { padding: 0 22px; }
       .nav .brand { display: none; }
       .nav ul { margin-left: 0; }
-      .hero { background-size: auto, auto 330%; background-position: center, center 10%; }
+      .hero { background-size: auto, cover, auto 330%; background-position: center, 68% 42%, center 10%; }
       .hero .wrap { padding-top: 36px; padding-bottom: 32px; }
       main > section { display: block; margin-top: 48px; padding-top: 26px; }
       main > section > * { max-width: none; }
@@ -669,7 +676,7 @@
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita11.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita11.jpg" width="1512" height="1080" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita1.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita1.jpg" width="1600" height="900" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita8.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita8.jpg" style="object-position: center 30%" width="720" height="1600" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
-          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" style="object-position: center 22%" width="968" height="1600" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
+          <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita10.jpg" style="object-position: center 7%" width="968" height="1600" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita9.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita9.jpg" style="object-position: center 45%" width="1382" height="1599" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita7.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita7.jpg" width="1600" height="900" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
           <a href="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita5.jpg" data-caption="Amrita Vishwa Vidyapeetham"><img src="https://raw.githubusercontent.com/prabal5ghosh/prabal5ghosh/main/Assets/amrita5.jpg" width="1600" height="900" alt="At Amrita Vishwa Vidyapeetham" loading="lazy" decoding="async"></a>
@@ -699,6 +706,7 @@
     <footer>
       <!-- TODO: update the date when you edit the page. -->
       Last updated November 2026.
+      Banner photograph: Nice, by Prabal Ghosh.
     </footer>
 </main>
 
