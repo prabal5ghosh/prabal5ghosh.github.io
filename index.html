@@ -106,7 +106,8 @@
     /* Top navigation */
     .nav { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--line); font-family: var(--sans); }
     .nav .wrap { display: flex; align-items: center; gap: 28px; height: 58px; }
-    .nav .brand { font-weight: 700; font-size: 17px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+    .nav .brand { font-weight: 700; font-size: 24px; color: #0b2a5b; text-decoration: none; white-space: nowrap; }
+@media (prefers-color-scheme: dark) { .nav .brand { color: #9cc0ff; } }
     .nav ul { display: flex; gap: 22px; margin-left: auto; font-size: 15px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
     .nav ul::-webkit-scrollbar { display: none; }
     .nav ul a { color: var(--muted); text-decoration: none; }
